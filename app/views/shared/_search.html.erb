@@ -1,0 +1,35 @@
+<h1>キーワード検索</h1>
+<div><%= form_with(url: search_products_path, local: true, method: :get, class: "search-form") do |form| %>
+  <%= form.text_field :keyword, placeholder: "名前、コンテントで検索する", class: "search-input" %>
+  <%= form.submit "キーワード検索", class: "search-btn" %>
+<% end %>
+</div>
+
+<% if @products.empty? %>
+  <h2 class = "seach-result">検索結果はありません</h2>
+<% else %>
+  <div class = "product-contents">
+    <ul class = "product-list">
+      <% @products.each do |product| %>
+        <br>
+        <p>検索結果</p>
+        <p><%= product.name %></p>
+        <p><%= product.amount %></p>
+        <p><%= product.address %></p>
+        <p>
+          <% if product.image.attached? %>
+            <%= image_tag product.image, size: '50x50' %>
+          <% else %>
+            <%= image_tag asset_path('default.png'), size: '50x50' %>
+          <% end %>
+        </p>
+        <p><%= product.user_id %></p>
+        <p><%= product.updated_at %></p>
+        <p><%= product.created_at %></p>
+        <p><%= link_to "詳細", product %></p>
+        <p><%= link_to "編集", [:edit, product] %></p>
+        <p><%= link_to 'product削除', product, data: { turbo_method: :delete, turbo_confirm: "productを削除しますか？" } %></p>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

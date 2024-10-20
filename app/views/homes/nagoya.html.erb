@@ -1,0 +1,37 @@
+<h1>名古屋エリア</h1>
+<div class="count">
+  <p><%= @products.count %>件が見つかりました</p>
+</div>
+<% @products.each do |product| %>
+  <table class="show-table">
+    <tr>
+      <th>名前</th>
+      <td><%=link_to product.name, product_path(product.id) %></td>
+    </tr>
+
+    <tr>
+      <th>コンテント</th>
+      <td><%= product.content %></td>
+    </tr>
+
+    <tr>
+      <th>金額</th>
+      <td><%= product.amount %></td>
+    </tr>
+
+   <tr>
+     <th>住所</th>
+     <td><%= product.address %></td>
+   </tr>
+
+   <tr>
+     <th>画像</th>
+     <td></td>
+   </tr>
+
+   <tr>
+     <th>詳細</th>
+     <td><%=link_to "詳細", product_path(product.id) %></td>
+   <tr>
+  </table>
+<% end %>
