@@ -1,0 +1,31 @@
+<h1>homes/search</h1>
+<h1>エリア検索結果</h1>
+
+<%= link_to "ホーム画面", root_path %>
+
+<div class="count">
+  <p><%= @products.count %>件見つかりました</p>
+</div>
+
+<% @products.each do |product| %>
+  <br>
+  <p>検索結果</p>
+  <p>名前: <%= product.name %></p>
+  <p>コンテント: <%= product.content %></p>
+  <p>金額: <%= product.amount %></p>
+  <p>住所: <%= product.address %></p>
+  <p>
+    イメージ: 
+    <% if product.image.attached? %>
+      <%= image_tag product.image, size: '50x50' %>
+    <% else %>
+      <%= image_tag asset_path('default.png'), size: '50x50' %>
+    <% end %>
+  </p>
+  <p>USER_ID: <%= product.user_id %></p>
+  <p>更新日: <%= product.updated_at %></p>
+  <p>作成日: <%= product.created_at %></p>
+  <p><%= link_to "詳細", product %></p>
+  <p><%= link_to "編集", [:edit, product] %></p>
+  <p><%= link_to 'product削除', product, data: { turbo_method: :delete, turbo_confirm: "productを削除しますか？" } %></p>
+<% end %>

@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :products
   has_many :reservations
+  has_one_attached :user_avatar
 
-  validates :name, presence: true
+  validates :user_name, presence: true
 end

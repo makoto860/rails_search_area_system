@@ -1,5 +1,13 @@
 class HomesController < ApplicationController
-  def home
+  def top
+  end
+
+  def search
+    if params[:address].present?
+      @products = Product.where('address LIKE ?', "%#{params[:address]}%")
+    else
+      @products = Product.all
+    end
   end
 
   def tokyo

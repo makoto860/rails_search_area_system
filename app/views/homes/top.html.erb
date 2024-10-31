@@ -1,8 +1,17 @@
 <h1>Homes#top</h1>
 <p>Find me in app/views/homes/top.html.erb</p>
 <h1>ホーム画面</h1>
+<h1>エリア検索</h1>
+<%= form_with url: homes_search_path, local: true, method: :get do |f|%>
+  <%= f.text_field :address, placeholder: "エリア" %>
+  <%= f.submit "検索"%>
+<% end %>
 
 <%= link_to "東京", homes_tokyo_path %>
 <%= link_to "函館", homes_hakodate_path %>
 <%= link_to "名古屋", homes_nagoya_path %>
 <%= link_to "大阪", homes_osaka_path %>
+<p><%= link_to "ユーザープロフィール", users_profile_path %></p>
+<%= link_to "新規ユーザー登録", new_user_registration_path %>
+<%= link_to "ログイン", new_user_session_path %>
+<%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete , turbo_confirm: "ログアウトしますか？" } %>

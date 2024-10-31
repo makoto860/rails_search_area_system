@@ -4,10 +4,10 @@ class Product < ApplicationRecord
   has_one_attached :image
 
   def self.search(search)
-    if search.present?
-      Product.where(['name LIKE(?) OR content LIKE(?)', "%#{search}%", "%#{search}%"])
+    if search != ""
+      Product.where('name LIKE(?) OR content LIKE(?)', "%#{params[:name]}%", "%#{params[:content]}%")
     else
-      Product.includes(:product).order('created_at DESC')
+      Product.all
     end
   end
 

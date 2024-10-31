@@ -1,0 +1,34 @@
+<h1>users/edit.html.erb</h1>
+<h1>ユーザー編集画面</h1>
+<%= form_with model: @user do |f| %>
+<table>
+  <tr>
+    <th><%= f.label :user_name, "ユーザー名" %></th>
+    <td><%= f.text_field :user_name %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :user_avator, "ユーザーアバター" %></th>
+    <td><%= f.file_field :user_avator %></td>
+  </tr>
+
+  <tr>
+    <th><%= f.label :user_profile, "ユーザープロフィール" %></th>
+    <td><%= f.text_area :user_profile %></td>
+  </tr>
+
+  <tr>
+      <th><%= f.label :address, "住所" %></th>
+      <td><%= f.text_field :address %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :image, "イメージ" %></th>
+    <td><%= f.file_field :image %></td>
+  </tr>
+</table>
+<div>
+  <ul>
+    <li><%= f.submit "編集を完了する" %></li>
+    <li><%= link_to "product一覧に戻る", :products %></li>
+  </ul>
+</div>
+<% end %>
